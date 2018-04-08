@@ -14,14 +14,12 @@ module.exports = function(app, db) {
 		    to: '+447444524680',  // Text this number
 		    from: '+441212854387' // From a valid Twilio number
 		})
-		.then((message) => res.send(message.sid);
+		.then((message) => res.send(message.sid));
 	}); 
 
 	app.post('/create',(req,res) => {
 		console.log(req.body); 
 		res.send('hello'); 
-
-
 
 	}); 
 
