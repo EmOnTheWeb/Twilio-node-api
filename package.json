@@ -2,7 +2,7 @@
   "name": "twilio-node-api",
   "version": "1.0.0",
   "description": "learning how to make an api with node and express and hopefully integrating with twilio",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js"
   },
@@ -21,6 +21,6 @@
     "nodemon": "^1.17.3"
   },
   "engines": {
-    "node": "6.9.4"
+    "node": "9.11.1"
   }
 }
