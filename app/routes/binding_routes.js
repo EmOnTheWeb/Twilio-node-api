@@ -41,7 +41,9 @@ module.exports = function(app, db) {
 		let body = req.body; 
 
 		let { identity, binding_type, address } = body; 
-
+		console.log('identity',identity); 
+		console.log('binding type',binding_type); 
+		console.log('address',address); 
 		var accountSid = 'ACe3e780ec614854942e7b3cee487d5282';
 		var authToken = 'c92d577c0d406d917464b0ea74195823';
 		var serviceId = 'IS3d6a777f378635bca0070859760a3db8'
@@ -54,10 +56,10 @@ module.exports = function(app, db) {
 		    bindingType: binding_type,
 		    address: address
 		  }).then(function(binding) {
-		    console.log(binding);
+		    // console.log(binding);
 		    res.send(binding); 
 		  }).catch(function(error) {
-		    console.log(error);
+		    // console.log(error);
 		    res.send(error); 
 		  });
 	}); 
