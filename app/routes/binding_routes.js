@@ -6,7 +6,7 @@ module.exports = function(app, db) {
 		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		if ('OPTIONS' === req.method) {
 	     	//respond with 200
-	     	res.send(200);
+	     	res.sendStatus(200);
 		} else {
 	    //move on
 	        next();
