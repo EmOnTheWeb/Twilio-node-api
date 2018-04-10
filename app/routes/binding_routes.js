@@ -42,8 +42,10 @@ module.exports = function(app, db) {
 		    address: address
 		  }).then(function(binding) {
 		    console.log(binding);
+		    res.send(binding); 
 		  }).catch(function(error) {
 		    console.log(error);
+		    res.send(error); 
 		  });
 	}); 
 
