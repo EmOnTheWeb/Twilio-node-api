@@ -14,21 +14,21 @@ module.exports = function(app, db) {
 	});
 
 	const twilio = require('twilio');
+	const accountSid = 'ACe3e780ec614854942e7b3cee487d5282'; // Your Account SID from www.twilio.com/console
+	const authToken = 'c92d577c0d406d917464b0ea74195823';	// Your Auth Token from www.twilio.com/console
+	const serviceId = 'IS3d6a777f378635bca0070859760a3db8'; 
 	
-	app.post('/text',(req,res) => {
-		// res.send('blahblah'); 
-		var accountSid = 'ACe3e780ec614854942e7b3cee487d5282'; // Your Account SID from www.twilio.com/console
-		var authToken = 'c92d577c0d406d917464b0ea74195823';   // Your Auth Token from www.twilio.com/console
+	// app.post('/text',(req,res) => { 
 
-		var client = new twilio(accountSid, authToken);
+	// 	var client = new twilio(accountSid, authToken);
 
-		client.messages.create({
-		    body: 'Hello from Node',
-		    to: '+447444524680',  // Text this number
-		    from: '+441212854387' // From a valid Twilio number
-		})
-		.then((message) => res.send(message.sid));
-	}); 
+	// 	client.messages.create({
+	// 	    body: 'blabalksjdfkbhalksdhblkaslkdjfkdANGUS',
+	// 	    to: '+447391654064',  // Text this number
+	// 	    from: '+441212854387' // From a valid Twilio number
+	// 	})
+	// 	.then((message) => res.send(message.sid));
+	// }); 
 
 	app.post('/create',(req,res) => {
 		console.log(req.body); 
@@ -44,9 +44,6 @@ module.exports = function(app, db) {
 		console.log('identity',identity); 
 		console.log('binding type',binding_type); 
 		console.log('address',address); 
-		var accountSid = 'ACe3e780ec614854942e7b3cee487d5282';
-		var authToken = 'c92d577c0d406d917464b0ea74195823';
-		var serviceId = 'IS3d6a777f378635bca0070859760a3db8'
 	
 		var client = new twilio(accountSid, authToken);
 		var service = client.notify.services(serviceId);
@@ -62,6 +59,30 @@ module.exports = function(app, db) {
 		    // console.log(error);
 		    res.send(error); 
 		  });
+	}); 
+
+	app.post('/sendPush',(req,res) => {
+		
+		let identity = req.body.identity; 
+
+		console.log('identity:',identity); 
+		const client = new twilio(accountSid, authToken);
+
+		const service = client.notify.services(serviceId);
+
+		service.notifications
+		  .create({
+		    identity: identity,
+		    body: 'blabhlabhlahblahb',
+		  })
+		  .then(notification => {
+		    console.log(notification);
+		  })
+		  .catch(error => {
+		    console.log(error);
+		  })
+		  .done();
+
 	}); 
 
 };
