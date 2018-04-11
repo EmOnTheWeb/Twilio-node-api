@@ -61,6 +61,31 @@ module.exports = function(app, db) {
 		  });
 	}); 
 
+	app.delete('/bindings',(req,res) => {
+		// console.log(req.body); 
+		// let body = req.body; 
+
+		// let { identity, binding_type, address } = body; 
+		// console.log('identity',identity); 
+		// console.log('binding type',binding_type); 
+		// console.log('address',address); 
+	
+		// var client = new twilio(accountSid, authToken);
+		// var service = client.notify.services(serviceId);
+
+		// service.bindings.create({
+		//     identity: identity,
+		//     bindingType: binding_type,
+		//     address: address
+		//   }).then(function(binding) {
+		//     // console.log(binding);
+		//     res.send(binding); 
+		//   }).catch(function(error) {
+		//     // console.log(error);
+		//     res.send(error); 
+		//   });
+	}); 
+
 	app.post('/sendPush',(req,res) => {
 		
 		let identity = req.body.identity; 
@@ -73,10 +98,19 @@ module.exports = function(app, db) {
 		service.notifications
 		  .create({
 		    identity: identity,
-		    body: 'blabhlabhlahblahb',
+		    fcm: {
+			    "data" : {
+			       "title": "Test Notification",
+			       "body": "This offer expires at 11:30 or whatever",
+			       "notId": 10,
+			       "surveyID": "ewtawgreg-gragrag-rgarhthgbad",
+			       "content-available":"1"
+			   }
+			}
 		  })
 		  .then(notification => {
 		    console.log(notification);
+		    res.send('hi'); 
 		  })
 		  .catch(error => {
 		    console.log(error);
